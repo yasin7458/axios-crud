@@ -9,6 +9,7 @@ function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios.get(API).then((res) => {
@@ -108,8 +109,31 @@ function App() {
         )}
       </form>
 
+      <div className="search-box">
+        <span className="search-icon">⌕</span>
+        <input
+          type="text"
+          placeholder="Search by name or email..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {search && (
+          <button
+            type="button"
+            className="clear-search"
+            onClick={() => setSearch("")}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
       <div className="user-list">
-        {data.map((element) => {
+        {data.filter((element) => {
+          return (
+            element.name.toLowerCase().includes(search.toLowerCase()) && element.email.toLowerCase().includes(search.toLowerCase())
+          )
+        }).map((element) => {
           return (
             <div className="user-card" key={element.id}>
               <h2>ID : {element.id}</h2>

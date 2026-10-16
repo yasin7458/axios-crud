@@ -131,6 +131,70 @@ body {
   animation: cardAppear 0.5s ease both;
 }
 
+.search-box {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto 35px;
+  padding: 7px 12px 7px 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #e0d7ff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(109, 40, 217, 0.10);
+  transition: 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 5px rgba(124, 58, 237, 0.12),
+    0 15px 35px rgba(109, 40, 217, 0.15);
+  transform: translateY(-2px);
+}
+
+.search-icon {
+  font-size: 32px;
+  line-height: 1;
+  color: #7c3aed;
+  transform: rotate(-20deg);
+}
+
+.search-box input {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #29234b;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.search-box input::placeholder {
+  color: #9692ad;
+}
+
+.clear-search {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.clear-search:hover {
+  background: #6d28d9;
+  color: white;
+  transform: rotate(90deg);
+}
+
 .user-card::before {
   content: "";
   position: absolute;
