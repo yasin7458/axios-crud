@@ -72,94 +72,100 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>User Management</h1>
+    <div className="wrapper">
+      <div className="left-content">
+        <h1>User Management</h1>
 
-      <form className="user-form" onSubmit={handleSubmit}>
-        <h2>{id === null ? "Add User" : "Update User"}</h2>
+        <form className="user-form" onSubmit={handleSubmit}>
+          <h2>{id === null ? "Add User" : "Update User"}</h2>
 
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+          <input
+            type="text"
+            placeholder="Enter Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          <input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <button type="submit" className="add-btn">
-          {id === null ? "Add User" : "Update User"}
-        </button>
-
-        {id !== null && (
-          <button
-            type="button"
-            className="cancel-btn"
-            onClick={handleCancel}
-          >
-            Cancel
+          <button type="submit" className="add-btn">
+            {id === null ? "Add User" : "Update User"}
           </button>
-        )}
-      </form>
 
-      <div className="search-box">
-        <span className="search-icon">⌕</span>
-        <input
-          type="text"
-          placeholder="Search by name or email..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        {search && (
-          <button
-            type="button"
-            className="clear-search"
-            onClick={() => setSearch("")}
-          >
-            ✕
-          </button>
-        )}
+          {id !== null && (
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          )}
+        </form>
       </div>
 
-      <div className="user-list">
-        {data.filter((element) => {
-          return (
-            element.name.toLowerCase().includes(search.toLowerCase()) && element.email.toLowerCase().includes(search.toLowerCase())
-          )
-        }).map((element) => {
-          return (
-            <div className="user-card" key={element.id}>
-              <h2>ID : {element.id}</h2>
-              <h3>Name : {element.name}</h3>
-              <p>Email : {element.email}</p>
+      <div className="right-content">
+        <div className="search-box">
+          <span className="search-icon">⌕</span>
+          <input
+            type="text"
+            placeholder="Search by name or email..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
-              <div className="buttons">
-                <button
-                  type="button"
-                  className="edit-btn"
-                  onClick={() => handleEdit(element)}
-                >
-                  Edit
-                </button>
+          {search && (
+            <button
+              type="button"
+              className="clear-search"
+              onClick={() => setSearch("")}
+            >
+              ✕
+            </button>
+          )}
+        </div>
 
-                <button
-                  type="button"
-                  className="delete-btn"
-                  onClick={() => handleDelete(element.id)}
-                >
-                  Delete
-                </button>
+        <div className="user-list">
+          {data.filter((element) => {
+            return (
+              element.name.toLowerCase().includes(search.toLowerCase()) ||
+              element.email.toLowerCase().includes(search.toLowerCase())
+            );
+          }).map((element) => {
+            return (
+              <div className="user-card" key={element.id}>
+                <h2>ID : {element.id}</h2>
+                <h3>Name : {element.name}</h3>
+                <p>Email : {element.email}</p>
+
+                <div className="buttons">
+                  <button
+                    type="button"
+                    className="edit-btn"
+                    onClick={() => handleEdit(element)}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    type="button"
+                    className="delete-btn"
+                    onClick={() => handleDelete(element.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
