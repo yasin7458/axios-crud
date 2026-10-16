@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
@@ -11,11 +12,22 @@ function App() {
   const [id, setId] = useState(null);
   const [search, setSearch] = useState("");
 
+  // pagination
+  const [currentpage, setCurrentPage] = useState(1);
+  const perpageData = 2;
+
+  let lastIndex = currentpage * perpageData;
+  let firstIndex = lastIndex - perpageData;
+
+  let currentData = data.slice(firstIndex, lastIndex);
+
+  let totalData = Math.ceil(data.length / perpageData);
+
   useEffect(() => {
     axios.get(API).then((res) => {
       setData(res.data);
-    })
-  }, [])
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,8 +41,7 @@ function App() {
         setName("");
         setEmail("");
       });
-    }
-    else {
+    } else {
       axios.put(`${API}/${id}`, {
         id: id,
         name: name,
@@ -45,7 +56,7 @@ function App() {
         setId(null);
       });
     }
-  }
+  };
 
   const handleEdit = (user) => {
     setId(user.id);
@@ -114,6 +125,7 @@ function App() {
       <div className="right-content">
         <div className="search-box">
           <span className="search-icon">⌕</span>
+
           <input
             type="text"
             placeholder="Search by name or email..."
@@ -138,7 +150,7 @@ function App() {
               element.name.toLowerCase().includes(search.toLowerCase()) ||
               element.email.toLowerCase().includes(search.toLowerCase())
             );
-          }).map((element) => {
+          }).slice(firstIndex, lastIndex).map((element) => {
             return (
               <div className="user-card" key={element.id}>
                 <h2>ID : {element.id}</h2>
@@ -166,6 +178,47 @@ function App() {
             );
           })}
         </div>
+
+        {totalData > 0 && (
+          <div className="pagination-container">
+            <button
+              type="button"
+              className="prev"
+              disabled={currentpage === 1}
+              onClick={() => setCurrentPage(currentpage - 1)}
+            >
+              Previous
+            </button>
+
+            <div className="pagination">
+              {Array.from({ length: totalData }).map((_, index) => {
+                return (
+                  <button
+                    type="button"
+                    className={
+                      currentpage === index + 1
+                        ? "pagination-btn active"
+                        : "pagination-btn"
+                    }
+                    onClick={() => setCurrentPage(index + 1)}
+                    key={index}
+                  >
+                    {index + 1}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              className="next"
+              disabled={currentpage === totalData}
+              onClick={() => setCurrentPage(currentpage + 1)}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
