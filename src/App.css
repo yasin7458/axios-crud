@@ -1,113 +1,152 @@
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #eef2ff, #f5edff, #e0f2fe);
-  color: #252344;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f6ff;
+  color: #242442;
+}
+
+button,
+input {
+  font: inherit;
 }
 
 .wrapper {
-  display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
   gap: 30px;
-  max-width: 1600px;
-  margin: 0 auto;
   padding: 30px;
-  align-items: start;
+  background:
+    radial-gradient(circle at 85% 5%, #dcd9ff 0, transparent 28%),
+    radial-gradient(circle at 65% 90%, #dcecff 0, transparent 30%),
+    #f7f8ff;
 }
 
+/* LEFT FORM */
+
 .left-content {
+  width: 370px;
+  min-width: 340px;
+  padding: 28px 24px;
   position: sticky;
   top: 25px;
-  height: calc(100vh - 50px);
-  overflow-y: auto;
-  padding: 25px 20px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid white;
-  border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.12);
+  align-self: flex-start;
+  border: 1px solid #ffffff;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 55px rgba(76, 66, 151, 0.13);
+  overflow: hidden;
+}
+
+.left-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #8e52f8, #398bff);
 }
 
 .left-content h1 {
-  margin-bottom: 25px;
-  font-size: 29px;
-  line-height: 1.25;
-  text-align: center;
-  background: linear-gradient(90deg, #6d28d9, #2563eb);
-  background-clip: text;
+  font-size: 27px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  margin: 0 0 8px;
+  background: linear-gradient(100deg, #7451dd, #3989fa);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
 }
 
 .user-form {
-  display: flex;
-  flex-direction: column;
-  gap: 17px;
-  padding: 20px 0;
+  margin-top: 26px;
+  padding: 23px 18px;
+  border-radius: 20px;
+  border: 1px solid #e9e7ff;
+  background: linear-gradient(145deg, #ffffff, #f8f7ff);
 }
 
 .user-form h2 {
-  margin-bottom: 5px;
-  color: #5b21b6;
-  text-align: center;
-  font-size: 24px;
+  font-size: 23px;
+  margin: 0 0 22px;
+  color: #29284b;
 }
 
 .user-form input {
+  display: block;
   width: 100%;
-  min-width: 0;
-  padding: 14px;
-  font-family: inherit;
-  font-size: 15px;
-  color: #252344;
-  background: #f8faff;
-  border: 1px solid #d8d9f5;
-  border-radius: 12px;
+  height: 54px;
+  margin-bottom: 17px;
+  padding: 0 15px;
+  border: 1px solid #e1e2f7;
+  border-radius: 13px;
   outline: none;
-  transition: 0.3s ease;
+  color: #29284b;
+  background: #ffffff;
+  transition: 0.25s ease;
+}
+
+.user-form input::placeholder {
+  color: #a0a2bc;
 }
 
 .user-form input:focus {
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+  border-color: #8862f5;
+  box-shadow: 0 0 0 4px rgba(136, 98, 245, 0.12);
 }
 
-.user-form button,
-.buttons button {
-  padding: 12px 16px;
+.add-btn,
+.cancel-btn {
+  display: block;
+  width: 100%;
+  min-height: 51px;
+  padding: 12px;
   border: none;
-  border-radius: 11px;
-  font-family: inherit;
-  font-size: 14px;
+  border-radius: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: 0.25s ease;
 }
 
 .add-btn {
-  color: white;
-  background: linear-gradient(100deg, #6d28d9, #2563eb);
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.22);
+  color: #ffffff;
+  background: linear-gradient(110deg, #9d4df3, #6555ef, #338bfa);
+  box-shadow: 0 9px 20px rgba(105, 81, 235, 0.24);
 }
 
-.add-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
-  transform: translateY(-2px);
+.add-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 25px rgba(105, 81, 235, 0.34);
 }
 
 .cancel-btn {
-  color: #5b21b6;
-  background: #ede9fe;
+  margin-top: 12px;
+  color: #6255c8;
+  border: 1px solid #dcd8fa;
+  background: #ffffff;
 }
 
+.cancel-btn:hover {
+  color: #ffffff;
+  background: linear-gradient(100deg, #f16a91, #e84c73);
+  border-color: transparent;
+}
+
+/* RIGHT CONTENT */
+
 .right-content {
+  flex: 1;
   min-width: 0;
 }
+
+/* SEARCH BAR */
 
 .search-box {
   position: sticky;
@@ -115,119 +154,215 @@ body {
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 12px;
-  width: 100%;
-  margin-bottom: 25px;
-  padding: 7px 14px 7px 20px;
-  background:transparent;
-  border-radius: 17px;
-  box-shadow: 0 10px 30px rgba(109, 40, 217, 0.12);
-  backdrop-filter: blur(15px);
-  transition: 0.3s ease;
+  gap: 13px;
+  min-height: 72px;
+  padding: 10px 20px;
+  margin-bottom: 27px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 35px rgba(76, 66, 151, 0.11);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: 0.25s ease;
 }
 
 .search-box:focus-within {
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.10);
+  border-color: #c8b8ff;
+  box-shadow: 0 12px 35px rgba(112, 83, 231, 0.17);
 }
 
 .search-icon {
-  color: #7c3aed;
-  font-size: 30px;
-  line-height: 1;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  color: #7454e8;
+  background: #f0edff;
+  font-size: 28px;
 }
 
 .search-box input {
   width: 100%;
   min-width: 0;
-  padding: 13px 0;
   border: none;
   outline: none;
+  color: #29284b;
   background: transparent;
-  color: #29234b;
-  font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;
+}
+
+.search-box input::placeholder {
+  color: #9b9db8;
 }
 
 .clear-search {
-  flex-shrink: 0;
   width: 34px;
   height: 34px;
+  flex-shrink: 0;
   border: none;
   border-radius: 10px;
-  background: #ede9fe;
-  color: #6d28d9;
+  color: #7162d8;
+  background: #f0edff;
   cursor: pointer;
+  transition: 0.2s ease;
 }
+
+.clear-search:hover {
+  color: white;
+  background: #7958e9;
+}
+
+/* USER CARDS */
 
 .user-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
+  align-items: stretch;
 }
 
 .user-card {
+  position: relative;
   min-width: 0;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid white;
-  border-radius: 20px;
-  box-shadow: 0 10px 28px rgba(57, 48, 115, 0.09);
-  overflow-wrap: anywhere;
+  padding: 25px;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+  border-radius: 23px;
+  background: linear-gradient(145deg, #ffffff, #f8f7ff);
+  box-shadow: 0 12px 32px rgba(71, 66, 139, 0.09);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardAppear 0.45s ease both;
+}
+
+.user-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #a34df5, #548cff, #43d9ca);
+}
+
+.user-card::after {
+  content: "";
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(133, 107, 248, 0.07);
+  pointer-events: none;
 }
 
 .user-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 17px 35px rgba(79, 70, 229, 0.16);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(87, 73, 173, 0.16);
 }
 
 .user-card h2 {
   display: inline-block;
-  margin-bottom: 16px;
-  padding: 7px 12px;
-  color: #6d28d9;
-  background: #ede9fe;
-  border-radius: 9px;
-  font-size: 14px;
+  margin: 0 0 19px;
+  padding: 7px 13px;
+  border-radius: 10px;
+  color: #7050d9;
+  background: #f0ebff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
 .user-card h3 {
-  margin-bottom: 10px;
-  color: #29234b;
-  font-size: 20px;
+  margin: 0 0 12px;
+  color: #292747;
+  font-size: 21px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
 }
 
 .user-card p {
-  margin-bottom: 22px;
-  color: #6b6b87;
+  margin: 0 0 24px;
+  color: #777a98;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
+
+/* EDIT AND DELETE */
 
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  padding-top: 17px;
+  border-top: 1px solid #eeecfa;
 }
 
-.buttons button {
+.edit-btn,
+.delete-btn {
   flex: 1;
-  color: white;
+  min-width: 0;
+  min-height: 43px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
 }
 
 .edit-btn {
-  background: linear-gradient(110deg, #2563eb, #4f46e5);
+  color: #6550d7;
+  background: #f0edff;
+  border-color: #e5dfff;
+}
+
+.edit-btn:hover {
+  color: white;
+  background: linear-gradient(110deg, #9260ee, #6254e9);
+  transform: translateY(-2px);
 }
 
 .delete-btn {
-  background: linear-gradient(110deg, #f43f5e, #e11d48);
+  color: #e34d72;
+  background: #fff0f4;
+  border-color: #ffe0e9;
 }
 
-@media (max-width: 1000px) {
+.delete-btn:hover {
+  color: white;
+  background: linear-gradient(110deg, #fa7898, #e9436c);
+  transform: translateY(-2px);
+}
+
+/* CARD ANIMATION */
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 1050px) {
   .wrapper {
-    grid-template-columns: 290px minmax(0, 1fr);
     gap: 20px;
     padding: 20px;
+  }
+
+  .left-content {
+    width: 320px;
+    min-width: 290px;
+    padding: 25px 19px;
   }
 
   .user-list {
@@ -237,19 +372,25 @@ body {
 
 @media (max-width: 700px) {
   .wrapper {
-    grid-template-columns: 1fr;
-    padding: 15px;
+    flex-direction: column;
+    padding: 16px;
+    gap: 25px;
   }
 
   .left-content {
-    position: static;
-    height: auto;
-    overflow: visible;
-    padding: 20px;
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-width: 0;
+    padding: 24px 18px;
   }
 
   .left-content h1 {
-    font-size: 27px;
+    font-size: 25px;
+  }
+
+  .user-form {
+    padding: 20px 15px;
   }
 
   .right-content {
@@ -258,9 +399,22 @@ body {
 
   .search-box {
     top: 8px;
+    min-height: 62px;
+    padding: 9px 12px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+  }
+
+  .search-box input {
+    font-size: 14px;
   }
 
   .user-list {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .user-card {
+    padding: 22px;
   }
 }
